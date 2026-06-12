@@ -402,22 +402,6 @@ body {
 }
 
 /* ---- Klypup dashboard mock (KlypupPreview.tsx) ---- */
-@keyframes hud-bar {
-  0%,
-  100% {
-    transform: scaleY(0.45);
-  }
-  50% {
-    transform: scaleY(1);
-  }
-}
-
-.hud-bar {
-  transform-origin: bottom;
-  animation: hud-bar 2.6s ease-in-out infinite;
-  will-change: transform;
-}
-
 @keyframes pill-glow {
   0%,
   100% {
@@ -441,7 +425,6 @@ body {
   .divider-line::after,
   .caret-blink,
   .node-pulse,
-  .hud-bar,
   .pill-glow {
     animation: none;
   }
