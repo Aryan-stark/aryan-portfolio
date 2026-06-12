@@ -33,7 +33,7 @@ export function Projects() {
         </AnimatedSection>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {PROJECTS.map((p, idx) => {
+          {PROJECTS.map((p) => {
             const card = (
               <AnimatedSection
                 className={`card-surface group flex h-full flex-col gap-5 p-7 duration-300 ease-out hover:border-accent/30 ${
@@ -42,15 +42,6 @@ export function Projects() {
                     : "transition-[border-color]"
                 }`}
               >
-                {/* Editorial ghost index */}
-                <span
-                  aria-hidden
-                  className="ghost-word ghost-word--accent pointer-events-none absolute -right-2 -top-6 font-mono"
-                  style={{ fontSize: "clamp(4rem, 8vw, 7rem)" }}
-                >
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-
                 <AnimatedItem>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex flex-col gap-2">

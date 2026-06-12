@@ -168,16 +168,6 @@ export const ACHIEVEMENTS = [
   "CBSE Mathematics Merit Certificate (2020)",
 ];
 
-export type Stat = { value: number; suffix?: string; label: string };
-
-// Telemetry band between the marquee and the flight log.
-export const STATS: Stat[] = [
-  { value: 400, suffix: "+", label: "LeetCode problems solved" },
-  { value: 5, label: "Agent AI pricing pipeline" },
-  { value: 98, suffix: "%", label: "Overflow-model accuracy" },
-  { value: 3, suffix: "+", label: "Production AI systems" },
-];
-
 export const SOFT_SKILLS = [
   "Problem Solving",
   "Analytical Thinking",
