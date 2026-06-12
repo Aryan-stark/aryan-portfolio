@@ -197,6 +197,8 @@ export function CinematicReveal() {
       >
         <canvas
           ref={canvasRef}
+          role="img"
+          aria-label="Scroll-driven cinematic sequence about how Aryan builds AI systems"
           className="absolute inset-0 h-full w-full"
           style={{ willChange: "contents", transform: "translateZ(0)" }}
         />

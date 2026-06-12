@@ -2,6 +2,7 @@
 
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 import { AnimatedItem, AnimatedSection } from "@/components/ui/AnimatedSection";
+import { DecryptText } from "@/components/ui/DecryptText";
 import { EXPERIENCE } from "@/lib/profile";
 
 export function Experience() {
@@ -17,7 +18,10 @@ export function Experience() {
           </AnimatedItem>
           <AnimatedItem>
             <h2 className="max-w-[18ch] font-sans text-4xl font-semibold leading-[0.98] tracking-tighter text-foreground md:text-6xl">
-              Where the suit has <span className="text-accent">flown.</span>
+              <DecryptText text="Where the suit has " />
+              <span className="text-accent">
+                <DecryptText text="flown." delay={500} />
+              </span>
             </h2>
           </AnimatedItem>
         </AnimatedSection>

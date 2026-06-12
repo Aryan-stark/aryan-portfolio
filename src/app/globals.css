@@ -39,6 +39,8 @@ body {
 }
 
 .card-surface {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 20px;
@@ -47,6 +49,32 @@ body {
   box-shadow:
     0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
     0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* Mouse-tracked spotlight glow — --mx/--my are set by SpotlightEffect.tsx. */
+.card-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(212, 162, 47, 0.1),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-surface:hover::before {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .card-surface::before {
+    display: none;
+  }
 }
 
 .scroll-animation {
@@ -105,6 +133,132 @@ body {
     var(--hud-line) calc(100% - 1px) 100%
   );
   background-size: 16px 100%;
+}
+
+/* Infinite tech-stack marquee (TechMarquee.tsx). Track holds two copies of
+   the list, so -50% lands exactly on the seam. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 44s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* HUD reticle cursor (HudCursor.tsx) — transform-only, pointer-events-none. */
+.hud-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1px solid rgba(212, 162, 47, 0.55);
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: transform;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    margin 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.25s ease;
+}
+
+.hud-cursor-ring::before,
+.hud-cursor-ring::after {
+  content: "";
+  position: absolute;
+  background: rgba(212, 162, 47, 0.55);
+  transition: background 0.2s ease;
+}
+
+/* crosshair ticks — box-shadow paints the opposite-side tick */
+.hud-cursor-ring::before {
+  top: 50%;
+  left: -6px;
+  width: 4px;
+  height: 1px;
+  box-shadow: 38px 0 0 rgba(212, 162, 47, 0.55);
+}
+
+.hud-cursor-ring::after {
+  left: 50%;
+  top: -6px;
+  width: 1px;
+  height: 4px;
+  box-shadow: 0 38px 0 rgba(212, 162, 47, 0.55);
+}
+
+.hud-cursor-ring[data-active="true"] {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-color: rgba(96, 178, 255, 0.8);
+}
+
+.hud-cursor-ring[data-active="true"]::before {
+  box-shadow: 54px 0 0 rgba(96, 178, 255, 0.8);
+  background: rgba(96, 178, 255, 0.8);
+}
+
+.hud-cursor-ring[data-active="true"]::after {
+  box-shadow: 0 54px 0 rgba(96, 178, 255, 0.8);
+  background: rgba(96, 178, 255, 0.8);
+}
+
+.hud-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 9999px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(212, 162, 47, 0.9);
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity 0.25s ease;
 }
 
 .grain::after {

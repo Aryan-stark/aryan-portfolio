@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 import { AnimatedItem, AnimatedSection } from "@/components/ui/AnimatedSection";
+import { DecryptText } from "@/components/ui/DecryptText";
 import { PROJECTS } from "@/lib/profile";
 
 export function Projects() {
@@ -18,7 +19,10 @@ export function Projects() {
           </AnimatedItem>
           <AnimatedItem>
             <h2 className="max-w-[20ch] font-sans text-4xl font-semibold leading-[0.98] tracking-tighter text-foreground md:text-6xl">
-              Things I&apos;ve <span className="text-accent">engineered.</span>
+              <DecryptText text="Things I've " />
+              <span className="text-accent">
+                <DecryptText text="engineered." delay={400} />
+              </span>
             </h2>
           </AnimatedItem>
         </AnimatedSection>

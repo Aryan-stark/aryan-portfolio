@@ -6,6 +6,9 @@ import { HudFrame } from "@/components/ui/HudFrame";
 import { FRAME_COUNT, HERO_TEXT_FADE_END, framePath } from "@/lib/hero";
 import { SUMMARY_CARDS, profile } from "@/lib/profile";
 
+// Module-scope alias keeps the scroll-handler effect's dependency list clean.
+const DIALOGUES = SUMMARY_CARDS;
+
 export function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -23,7 +26,6 @@ export function Hero() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [visibleCards, setVisibleCards] = useState<Set<string>>(new Set());
-  const DIALOGUES = SUMMARY_CARDS;
 
   useEffect(() => {
     let cancelled = false;
@@ -191,6 +193,8 @@ export function Hero() {
       >
         <canvas
           ref={canvasRef}
+          role="img"
+          aria-label="Scroll-driven cinematic animation of an Iron Man suit powering up"
           className="absolute inset-0 h-full w-full"
           style={{ willChange: "contents", transform: "translateZ(0)" }}
         />
@@ -221,7 +225,7 @@ export function Hero() {
           className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-5 px-6 pb-24 md:px-12 md:pb-28"
           style={{ transition: "opacity 80ms linear" }}
         >
-          <EyebrowBadge>{profile.role.toUpperCase()} // AVAILABLE FOR HIRE</EyebrowBadge>
+          <EyebrowBadge>{`${profile.role.toUpperCase()} // AVAILABLE FOR HIRE`}</EyebrowBadge>
           <h1 className="max-w-[16ch] font-sans text-5xl font-semibold leading-[0.95] tracking-tighter text-foreground md:text-7xl lg:text-8xl">
             {profile.name.split(" ")[0]}
             <br />

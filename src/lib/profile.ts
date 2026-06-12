@@ -6,8 +6,10 @@ export const profile = {
   location: "Noida, UP, India",
   email: "aryansethi243@gmail.com",
   phone: "+91 70821 17633",
-  linkedin: { label: "aryan-sethi", url: "https://www.linkedin.com/in/aryan-sethi" },
+  linkedin: { label: "aryan-sethi", url: "https://www.linkedin.com/in/aryan-sethi-8b03b827b/" },
   github: { label: "Aryan-stark", url: "https://github.com/Aryan-stark" },
+  /** Public-asset path — render with asset() from "@/lib/basePath". */
+  resume: "/Aryan_Sethi_Resume.pdf",
   tagline: "AI Engineer building scalable, real-time AI systems.",
   summary:
     "AI Engineer with hands-on experience building scalable, production-grade AI systems using Python, REST APIs, NestJS, and Generative AI (LLMs, RAG, VLMs). Skilled in designing agentic and multi-agent workflows and end-to-end ML pipelines, with a strong foundation in data structures, algorithms, multithreading, and system design. Proven ability to deliver full-stack AI products from model integration to containerized deployment.",

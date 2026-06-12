@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 import { HudFrame } from "@/components/ui/HudFrame";
+import { DecryptText } from "@/components/ui/DecryptText";
 import { SKILL_FIGURE, SKILL_GROUPS } from "@/lib/skills";
 
 export function SkillsHologram() {
@@ -203,7 +204,10 @@ export function SkillsHologram() {
             CAPABILITY MATRIX // LIVE
           </EyebrowBadge>
           <h2 className="font-sans text-3xl font-semibold leading-[0.98] tracking-tighter text-foreground md:text-5xl">
-            Skills, <span className="text-holo">deployed.</span>
+            <DecryptText text="Skills, " />
+            <span className="text-holo">
+              <DecryptText text="deployed." delay={300} />
+            </span>
           </h2>
           <p className="hidden max-w-[52ch] font-sans text-sm leading-relaxed text-zinc-400 md:block">
             Scroll to pan the interface — each module brings a layer of the stack

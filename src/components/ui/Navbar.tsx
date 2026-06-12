@@ -2,14 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, List, X } from "@phosphor-icons/react";
-
-const NAV_LINKS: [string, string][] = [
-  ["Skills", "#skills"],
-  ["Experience", "#experience"],
-  ["Projects", "#projects"],
-  ["Education", "#education"],
-];
+import { ArrowUpRight, DownloadSimple, List, X } from "@phosphor-icons/react";
+import { NAV_LINKS } from "@/lib/nav";
+import { asset } from "@/lib/basePath";
+import { profile } from "@/lib/profile";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -51,7 +47,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map(([label, href]) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
               href={href}
@@ -62,17 +58,31 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="#footer"
-          className="group hidden items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-all duration-200 hover:bg-white/[0.1] active:translate-y-[1px] md:inline-flex"
-        >
-          Contact
-          <ArrowUpRight
-            size={14}
-            weight="bold"
-            className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </a>
+        <div className="hidden items-center gap-2.5 md:flex">
+          <a
+            href={asset(profile.resume)}
+            download
+            className="group inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/[0.08] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent backdrop-blur-md transition-all duration-200 hover:bg-accent/[0.16] active:translate-y-[1px]"
+          >
+            Resume
+            <DownloadSimple
+              size={14}
+              weight="bold"
+              className="transition-transform duration-200 group-hover:translate-y-0.5"
+            />
+          </a>
+          <a
+            href="#footer"
+            className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-all duration-200 hover:bg-white/[0.1] active:translate-y-[1px]"
+          >
+            Contact
+            <ArrowUpRight
+              size={14}
+              weight="bold"
+              className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
 
         {/* mobile menu toggle */}
         <button
@@ -93,7 +103,7 @@ export function Navbar() {
         }`}
       >
         <nav className="flex flex-col gap-1 px-6 py-4">
-          {NAV_LINKS.map(([label, href]) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
               href={href}
@@ -104,9 +114,18 @@ export function Navbar() {
             </a>
           ))}
           <a
+            href={asset(profile.resume)}
+            download
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 inline-flex items-center justify-between rounded-lg border border-accent/40 bg-accent/[0.08] px-3 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.22em] text-accent transition-colors hover:bg-accent/[0.16]"
+          >
+            Resume
+            <DownloadSimple size={14} weight="bold" />
+          </a>
+          <a
             href="#footer"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 inline-flex items-center justify-between rounded-lg border border-white/15 bg-white/[0.05] px-3 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.22em] text-foreground transition-colors hover:bg-white/[0.1]"
+            className="inline-flex items-center justify-between rounded-lg border border-white/15 bg-white/[0.05] px-3 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.22em] text-foreground transition-colors hover:bg-white/[0.1]"
           >
             Contact
             <ArrowUpRight size={14} weight="bold" />

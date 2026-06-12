@@ -1,5 +1,8 @@
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, DownloadSimple } from "@phosphor-icons/react/dist/ssr";
+import { asset } from "@/lib/basePath";
 import { profile } from "@/lib/profile";
+import { ParticleField } from "@/components/ui/ParticleField";
+import { DecryptText } from "@/components/ui/DecryptText";
 
 export function Footer() {
   const contacts: { label: string; value: string; href: string }[] = [
@@ -12,9 +15,10 @@ export function Footer() {
   return (
     <footer
       id="footer"
-      className="relative border-t border-white/5 bg-background px-6 pb-14 pt-24 md:px-10 md:pb-16 md:pt-32"
+      className="relative overflow-hidden border-t border-white/5 bg-background px-6 pb-14 pt-24 md:px-10 md:pb-16 md:pt-32"
     >
-      <div className="mx-auto flex max-w-[1100px] flex-col gap-14">
+      <ParticleField />
+      <div className="relative mx-auto flex max-w-[1100px] flex-col gap-14">
         <div className="flex flex-col gap-6">
           <span className="inline-flex w-fit items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
             <span
@@ -24,12 +28,27 @@ export function Footer() {
             J.A.R.V.I.S. // Standing by
           </span>
           <h2 className="max-w-[20ch] font-sans text-4xl font-semibold leading-[0.98] tracking-tighter text-foreground md:text-6xl">
-            Let&apos;s build something <span className="text-accent">inevitable.</span>
+            <DecryptText text="Let's build something " />
+            <span className="text-accent">
+              <DecryptText text="inevitable." delay={500} />
+            </span>
           </h2>
           <p className="max-w-[52ch] font-sans text-base leading-relaxed text-zinc-400">
             Open to AI Engineering roles and collaborations. The arc reactor&apos;s
             online — reach out and let&apos;s talk.
           </p>
+          <a
+            href={asset(profile.resume)}
+            download
+            className="group inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/[0.08] px-5 py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent transition-all duration-200 hover:bg-accent/[0.16] active:translate-y-[1px]"
+          >
+            Download Resume
+            <DownloadSimple
+              size={15}
+              weight="bold"
+              className="transition-transform duration-200 group-hover:translate-y-0.5"
+            />
+          </a>
         </div>
 
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] md:grid-cols-4">
