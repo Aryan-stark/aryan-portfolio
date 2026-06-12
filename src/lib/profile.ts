@@ -7,10 +7,10 @@ export const profile = {
   email: "aryansethi243@gmail.com",
   phone: "+91 70821 17633",
   linkedin: { label: "aryan-sethi", url: "https://www.linkedin.com/in/aryan-sethi" },
-  github: { label: "GitHub", url: "https://github.com/" },
+  github: { label: "Aryan-stark", url: "https://github.com/Aryan-stark" },
   tagline: "AI Engineer building scalable, real-time AI systems.",
   summary:
-    "AI Engineer with hands-on experience building scalable AI-driven systems using Python, REST APIs, NestJS, and Generative AI (LLMs, RAG, VLMs). Strong foundation in data structures, algorithms, multithreading, and system design — experienced across end-to-end ML pipelines, prompt engineering, and full-stack integration.",
+    "AI Engineer with hands-on experience building scalable, production-grade AI systems using Python, REST APIs, NestJS, and Generative AI (LLMs, RAG, VLMs). Skilled in designing agentic and multi-agent workflows and end-to-end ML pipelines, with a strong foundation in data structures, algorithms, multithreading, and system design. Proven ability to deliver full-stack AI products from model integration to containerized deployment.",
 };
 
 export type SummaryCard = {
@@ -82,14 +82,43 @@ export type Project = {
   link?: { label: string; url: string };
   tech: string[];
   bullets: string[];
+  /** Render full-width with an expanded layout (flagship work). */
+  featured?: boolean;
 };
 
 export const PROJECTS: Project[] = [
   {
+    name: "Klypup — AI-Powered Dynamic Pricing Intelligence Dashboard",
+    blurb:
+      "Multi-tenant SaaS pricing dashboard where a 5-agent AI pipeline analyzes competitor prices, demand elasticity, inventory pressure, and compliance rules to generate confidence-scored pricing recommendations with full per-agent reasoning transparency.",
+    featured: true,
+    link: { label: "GitHub", url: "https://github.com/Aryan-stark/Klypup" },
+    tech: [
+      "FastAPI",
+      "React.js",
+      "TypeScript",
+      "MongoDB",
+      "Groq API",
+      "LLaMA 3.3-70B",
+      "Tailwind CSS",
+      "Docker",
+      "JWT",
+      "SSE",
+      "Zustand",
+      "React Query",
+    ],
+    bullets: [
+      "Designed a sequential agentic workflow using the Template Method pattern, where each agent uses LLM tool-calling (ReAct loop) with defensive JSON parsing, nudge-retry, and context-window optimization to operate within 8K-token model limits.",
+      "Engineered a human-in-the-loop approval workflow with deterministic confidence-based routing (auto-approve / pending / escalated), analyst override with price-bound validation, and an immutable audit trail for every price action.",
+      "Implemented tenant-isolated multi-tenancy with org_id extracted exclusively from JWT claims, dual-token auth (15-min access + 7-day rotating refresh), role-based access control, and sliding-window rate limiting.",
+      "Built real-time pipeline progress streaming via Server-Sent Events with asyncio queues, in-memory TTL caching, a multi-provider AI fallback chain (Cerebras → Gemini → Groq), and a responsive React frontend with code splitting and debounced search.",
+    ],
+  },
+  {
     name: "Seva — AI-Powered Food Donation Platform",
     blurb:
       "Full-stack AI platform connecting hostels and NGOs to reduce food wastage through real-time donation workflows.",
-    link: { label: "GitHub", url: "https://github.com/" },
+    link: { label: "GitHub", url: "https://github.com/Aryan-stark/seva-py" },
     tech: [
       "FastAPI",
       "React.js",
@@ -111,7 +140,7 @@ export const PROJECTS: Project[] = [
     blurb:
       "Smart-city waste management system predicting bin overflows and optimizing garbage-truck routes.",
     period: "March 2025",
-    link: { label: "GitHub", url: "https://github.com/" },
+    link: { label: "GitHub", url: "https://github.com/Aryan-stark/Smart_waste_route_optimizer" },
     tech: ["C++", "Machine Learning", "Random Forest", "Dijkstra"],
     bullets: [
       "Integrated Dijkstra's algorithm (C++) with real-time ML prediction for dynamic route optimization and live bin monitoring via an interactive dashboard.",

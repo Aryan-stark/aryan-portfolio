@@ -25,7 +25,7 @@ export function Experience() {
         {EXPERIENCE.map((job) => (
           <AnimatedSection
             key={job.company}
-            className="card-surface flex flex-col gap-6 p-7 md:p-9"
+            className="card-surface flex flex-col gap-6 p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/30 md:p-9"
           >
             <AnimatedItem>
               <div className="flex flex-col justify-between gap-2 md:flex-row md:items-baseline">

@@ -17,7 +17,7 @@ export function Education() {
             <EyebrowBadge>ORIGIN // EDUCATION</EyebrowBadge>
           </AnimatedItem>
           <AnimatedItem>
-            <div className="card-surface p-7">
+            <div className="card-surface p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/30">
               <h3 className="font-sans text-xl font-semibold leading-snug tracking-tight text-foreground">
                 {EDUCATION.degree}
               </h3>

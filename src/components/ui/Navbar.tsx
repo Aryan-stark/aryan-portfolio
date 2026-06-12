@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight, List, X } from "@phosphor-icons/react";
+
+const NAV_LINKS: [string, string][] = [
+  ["Skills", "#skills"],
+  ["Experience", "#experience"],
+  ["Projects", "#projects"],
+  ["Education", "#education"],
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -13,6 +21,14 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Lock body scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header
@@ -35,12 +51,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {[
-            ["Skills", "#skills"],
-            ["Experience", "#experience"],
-            ["Projects", "#projects"],
-            ["Education", "#education"],
-          ].map(([label, href]) => (
+          {NAV_LINKS.map(([label, href]) => (
             <a
               key={href}
               href={href}
@@ -53,7 +64,7 @@ export function Navbar() {
 
         <a
           href="#footer"
-          className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-all duration-200 hover:bg-white/[0.1] active:translate-y-[1px]"
+          className="group hidden items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-all duration-200 hover:bg-white/[0.1] active:translate-y-[1px] md:inline-flex"
         >
           Contact
           <ArrowUpRight
@@ -62,6 +73,45 @@ export function Navbar() {
             className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </a>
+
+        {/* mobile menu toggle */}
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.05] p-2.5 text-foreground transition-colors hover:bg-white/[0.1] md:hidden"
+        >
+          {menuOpen ? <X size={18} weight="bold" /> : <List size={18} weight="bold" />}
+        </button>
+      </div>
+
+      {/* mobile menu panel */}
+      <div
+        className={`overflow-hidden border-t border-white/10 bg-black/80 backdrop-blur-2xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col gap-1 px-6 py-4">
+          {NAV_LINKS.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className="rounded-lg px-3 py-3 font-mono text-[12px] uppercase tracking-[0.24em] text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
+          <a
+            href="#footer"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 inline-flex items-center justify-between rounded-lg border border-white/15 bg-white/[0.05] px-3 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.22em] text-foreground transition-colors hover:bg-white/[0.1]"
+          >
+            Contact
+            <ArrowUpRight size={14} weight="bold" />
+          </a>
+        </nav>
       </div>
     </header>
   );

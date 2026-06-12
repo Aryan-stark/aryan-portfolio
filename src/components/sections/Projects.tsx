@@ -27,13 +27,30 @@ export function Projects() {
           {PROJECTS.map((p) => (
             <AnimatedSection
               key={p.name}
-              className="card-surface group flex h-full flex-col gap-5 p-7"
+              className={`card-surface group flex h-full flex-col gap-5 p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/30 ${
+                p.featured ? "md:col-span-2 md:p-9" : ""
+              }`}
             >
               <AnimatedItem>
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-sans text-xl font-semibold leading-snug tracking-tight text-foreground">
-                    {p.name}
-                  </h3>
+                  <div className="flex flex-col gap-2">
+                    {p.featured && (
+                      <span className="inline-flex w-fit items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-accent">
+                        <span
+                          aria-hidden
+                          className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(212,162,47,0.7)]"
+                        />
+                        Flagship Build
+                      </span>
+                    )}
+                    <h3
+                      className={`font-sans font-semibold leading-snug tracking-tight text-foreground ${
+                        p.featured ? "text-2xl md:text-3xl" : "text-xl"
+                      }`}
+                    >
+                      {p.name}
+                    </h3>
+                  </div>
                   {p.link && (
                     <a
                       href={p.link.url}
@@ -49,11 +66,23 @@ export function Projects() {
               </AnimatedItem>
 
               <AnimatedItem>
-                <p className="text-sm leading-relaxed text-zinc-400">{p.blurb}</p>
+                <p
+                  className={`leading-relaxed text-zinc-400 ${
+                    p.featured ? "max-w-[70ch] text-[15px]" : "text-sm"
+                  }`}
+                >
+                  {p.blurb}
+                </p>
               </AnimatedItem>
 
               <AnimatedItem>
-                <ul className="flex flex-col gap-2.5">
+                <ul
+                  className={`gap-2.5 ${
+                    p.featured
+                      ? "grid sm:grid-cols-2 sm:gap-x-8"
+                      : "flex flex-col"
+                  }`}
+                >
                   {p.bullets.map((b, i) => (
                     <li key={i} className="flex gap-2.5 text-[13px] leading-relaxed text-zinc-300">
                       <span
