@@ -1,16 +1,23 @@
 "use client";
 
+import { Certificate, Code, Medal } from "@phosphor-icons/react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 import { AnimatedItem, AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 import { ACHIEVEMENTS, EDUCATION, SOFT_SKILLS } from "@/lib/profile";
+
+// One icon per achievement: HCL cert, LeetCode, CBSE merit.
+const ACHIEVEMENT_ICONS = [Certificate, Code, Medal];
 
 export function Education() {
   return (
     <section
       id="education"
-      className="relative border-t border-white/5 bg-background px-6 pb-24 pt-24 md:px-10 md:pb-32 md:pt-32"
+      className="relative overflow-hidden bg-background px-6 pb-24 pt-24 md:px-10 md:pb-32 md:pt-32"
     >
-      <div className="mx-auto grid max-w-[1100px] gap-12 md:grid-cols-2 md:gap-16">
+      <SectionBackdrop word="ORIGIN" tint="white" glow="gold" />
+
+      <div className="relative mx-auto grid max-w-[1100px] gap-12 md:grid-cols-2 md:gap-16">
         {/* Education */}
         <AnimatedSection className="flex flex-col gap-6">
           <AnimatedItem>
@@ -44,19 +51,26 @@ export function Education() {
             <EyebrowBadge>COMMENDATIONS // ACHIEVEMENTS</EyebrowBadge>
           </AnimatedItem>
           <AnimatedItem>
-            <ul className="flex flex-col divide-y divide-white/8 border-y border-white/8">
-              {ACHIEVEMENTS.map((a) => (
-                <li
-                  key={a}
-                  className="flex items-center gap-3 py-4 font-sans text-[15px] text-zinc-200"
-                >
-                  <span
-                    aria-hidden
-                    className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_rgba(212,162,47,0.7)]"
-                  />
-                  {a}
-                </li>
-              ))}
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {ACHIEVEMENTS.map((a, i) => {
+                const Icon = ACHIEVEMENT_ICONS[i % ACHIEVEMENT_ICONS.length];
+                return (
+                  <li
+                    key={a}
+                    className="card-surface flex flex-col gap-3 p-4 transition-colors hover:border-accent/30"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Icon size={20} weight="duotone" className="text-accent" />
+                      <span className="font-mono text-[9px] tracking-[0.3em] text-zinc-500">
+                        A.0{i + 1}
+                      </span>
+                    </div>
+                    <span className="text-[13px] leading-snug text-zinc-200">
+                      {a}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </AnimatedItem>
           <AnimatedItem>
@@ -64,7 +78,7 @@ export function Education() {
               {SOFT_SKILLS.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] tracking-tight text-zinc-300"
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] tracking-tight text-zinc-300 transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   {s}
                 </span>

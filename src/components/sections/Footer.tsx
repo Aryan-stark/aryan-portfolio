@@ -3,6 +3,7 @@ import { asset } from "@/lib/basePath";
 import { profile } from "@/lib/profile";
 import { ParticleField } from "@/components/ui/ParticleField";
 import { DecryptText } from "@/components/ui/DecryptText";
+import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 
 export function Footer() {
   const contacts: { label: string; value: string; href: string }[] = [
@@ -17,7 +18,13 @@ export function Footer() {
       id="footer"
       className="relative overflow-hidden border-t border-white/5 bg-background px-6 pb-14 pt-24 md:px-10 md:pb-16 md:pt-32"
     >
-      <ParticleField />
+      <SectionBackdrop
+        word="ARYAN SETHI"
+        tint="gold"
+        size="md"
+        wordClassName="left-1/2 top-6 md:top-10"
+      />
+      <ParticleField count={48} />
       <div className="relative mx-auto flex max-w-[1100px] flex-col gap-14">
         <div className="flex flex-col gap-6">
           <span className="inline-flex w-fit items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
