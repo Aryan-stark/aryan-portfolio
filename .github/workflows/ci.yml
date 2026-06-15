@@ -1,0 +1,33 @@
+name: CI
+
+# Run quality checks on every pull request targeting main, and also on direct
+# pushes to main as a safety net. This catches lint/build failures BEFORE the
+# deploy workflow publishes anything.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Match the deploy build so a PR builds the same way production does.
+      NEXT_PUBLIC_BASE_PATH: /aryan-portfolio
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build static export
+        run: npm run build
