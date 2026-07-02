@@ -67,13 +67,12 @@ export const EXPERIENCE: Experience[] = [
     company: "Codeacious Technologies",
     period: "Dec 2025 — Present",
     bullets: [
-      "Built a full-stack real-time anomaly detection system using computer vision, RTSP stream ingestion pipelines, and domain-specific rule engines for temporal event analysis across live video feeds.",
-      "Integrated VLM/LLM-based verification pipelines with guardrails and multi-agent k-voting workflows to improve anomaly detection accuracy and reduce false positives.",
-      "Developed scalable AI-powered RAG systems using Milvus, semantic retrieval pipelines, and analytics dashboards for enterprise knowledge querying and monitoring.",
-      "Engineered local LLM-based workflow automation platforms with React, TypeScript, and connector integrations for Gmail, Slack, and OneDrive using secure OAuth flows and IPC handlers.",
+      "Built a full-stack real-time anomaly detection system using computer vision, RTSP stream ingestion, and domain-specific rule engines for temporal event analysis, integrating VLM/LLM verification pipelines with guardrails and multi-agent k-voting workflows to improve accuracy and reduce false positives.",
       "Containerized and deployed backend services using NestJS, Docker, and Kubernetes for scalable AI workflow orchestration.",
+      "Developed scalable AI-powered RAG systems on Milvus using hybrid retrieval (dense + sparse/keyword) pipelines and analytics dashboards for enterprise knowledge querying and monitoring.",
+      "Developed a local-first macOS desktop automation platform shipped as an Electron app backed by a cloud Express/MySQL API — with in-chat connectors (Gmail, Slack, Google Drive), a Model Hub to discover, download, and manage device-compatible LLMs, and an agent → SSE → MCP gateway (127.0.0.1) routing to Slack and a keyless local web-search daemon via a Bearer-token cloud API.",
     ],
-    tags: ["Computer Vision", "RAG", "VLM/LLM", "NestJS", "Docker", "Kubernetes"],
+    tags: ["Computer Vision", "RAG", "VLM/LLM", "Electron", "NestJS", "Docker", "Kubernetes"],
   },
 ];
 
@@ -155,7 +154,7 @@ export const EDUCATION = {
   degree: "B.Tech — Computer Science (AI & ML)",
   institution: "KCC Institute of Technology & Management",
   period: "2022 — 2026",
-  detail: "CGPA 7.69 / 10 (through 7th semester)",
+  detail: "CGPA 7.66 / 10 — I Division with Distinction",
   extra: [
     "Class XII (CBSE) — 91% · Class X — 90%",
     "CBSE District Topper in Mathematics (Top 0.01%)",
